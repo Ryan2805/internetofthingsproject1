@@ -1,0 +1,64 @@
+#include <Wire.h>
+
+#include "rgb_lcd.h"
+
+
+rgb_lcd lcd;
+
+
+const int irPin = 6;
+
+const int colorR = 255;
+
+const int colorG = 125;
+
+const int colorB = 0;
+
+
+bool isLocked = true;
+
+
+void setup() {
+
+Serial.begin(9600);
+
+pinMode(irPin, INPUT);
+
+lcd.begin(16, 2);
+
+lcd.setRGB(colorR, colorG, colorB);
+
+lcd.print("No Pet Food");
+
+}
+
+
+void loop() {
+
+if (digitalRead(irPin) == LOW) {
+
+isLocked = !isLocked;
+
+if (isLocked) {
+
+lcd.clear();
+
+lcd.setRGB(255, 0, 0); // set background color to red
+
+lcd.print("No Pet Food");
+
+} else {
+
+lcd.clear();
+
+lcd.setRGB(0, 255, 0); // set background color to green
+
+lcd.print("Food detected");
+
+}
+
+delay(1000);
+
+}
+
+}
