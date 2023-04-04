@@ -1,2 +1,2 @@
 # internetofthingsproject1
- internet of things project one
+ Arduino Software and hardware to help assist pet owners.
